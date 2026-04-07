@@ -25,8 +25,8 @@ A RESTful API service for Malaysian postcode lookup, validation, and search. Bui
 ### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/shahonseven/my-postcodes-api.git
+# Clone the repository (include submodules for postcode data)
+git clone --recurse-submodules https://github.com/shahonseven/my-postcodes-api.git
 cd my-postcodes-api
 
 # Install dependencies
