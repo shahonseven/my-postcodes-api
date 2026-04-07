@@ -96,7 +96,7 @@ class PostcodeController extends Controller
             ->where('city', 'like', "%{$search}%")
             ->orWhere('state', 'like', "%{$search}%")
             ->orWhere('postcode', 'like', "{$search}%")
-            ->orderBy('city')
+            ->orderBy('postcode')
             ->limit(50)
             ->get();
 
