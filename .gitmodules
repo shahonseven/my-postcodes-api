@@ -1,0 +1,3 @@
+[submodule "database/migrations/source"]
+	path = database/migrations/source
+	url = https://github.com/heiswayi/malaysia-postcodes.git
