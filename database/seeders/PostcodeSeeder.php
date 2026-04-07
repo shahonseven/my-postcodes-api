@@ -14,8 +14,9 @@ class PostcodeSeeder extends Seeder
     {
         $csvPath = database_path('seeders/source/data/csv/postcodes.csv');
 
-        if (!file_exists($csvPath)) {
-            $this->command->error('Postcode CSV file not found at: ' . $csvPath);
+        if (! file_exists($csvPath)) {
+            $this->command->error('Postcode CSV file not found at: '.$csvPath);
+
             return;
         }
 
@@ -38,6 +39,6 @@ class PostcodeSeeder extends Seeder
 
         Postcode::insert($postcodes);
 
-        $this->command->info('Seeded ' . count($postcodes) . ' postcodes into the database.');
+        $this->command->info('Seeded '.count($postcodes).' postcodes into the database.');
     }
 }

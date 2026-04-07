@@ -6,7 +6,6 @@ use App\Models\Postcode;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class PostcodeApiTest extends TestCase
@@ -14,6 +13,7 @@ class PostcodeApiTest extends TestCase
     use RefreshDatabase;
 
     protected User $user;
+
     protected string $token;
 
     protected function setUp(): void
@@ -41,7 +41,7 @@ class PostcodeApiTest extends TestCase
 
     private function authHeaders(): array
     {
-        return ['Authorization' => 'Bearer ' . $this->token];
+        return ['Authorization' => 'Bearer '.$this->token];
     }
 
     public function test_requires_authentication_for_postcodes(): void
@@ -215,7 +215,7 @@ class PostcodeApiTest extends TestCase
         $this->user->tokens()->delete();
 
         // Request with revoked token should fail
-        $response = $this->getJson('/api/states', ['Authorization' => 'Bearer ' . $token]);
+        $response = $this->getJson('/api/states', ['Authorization' => 'Bearer '.$token]);
         $response->assertStatus(401);
     }
 }

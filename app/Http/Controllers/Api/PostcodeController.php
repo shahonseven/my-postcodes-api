@@ -18,7 +18,7 @@ class PostcodeController extends Controller
             ->distinct()
             ->orderBy('state')
             ->get()
-            ->map(fn($item) => [
+            ->map(fn ($item) => [
                 'name' => $item->state,
                 'code' => $item->state_code,
             ]);
@@ -42,7 +42,7 @@ class PostcodeController extends Controller
         }
 
         if ($request->has('search')) {
-            $query->where('city', 'like', '%' . $request->search . '%');
+            $query->where('city', 'like', '%'.$request->search.'%');
         }
 
         $cities = $query->orderBy('city')->get();
@@ -69,7 +69,7 @@ class PostcodeController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $results->map(fn($item) => [
+            'data' => $results->map(fn ($item) => [
                 'postcode' => $item->postcode,
                 'city' => $item->city,
                 'state' => $item->state,
@@ -85,7 +85,7 @@ class PostcodeController extends Controller
     {
         $search = $request->input('q');
 
-        if (!$search) {
+        if (! $search) {
             return response()->json([
                 'success' => false,
                 'message' => 'Search query is required',
