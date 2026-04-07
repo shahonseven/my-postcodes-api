@@ -79,7 +79,7 @@ class PostcodeController extends Controller
     }
 
     /**
-     * Search by city name.
+     * Search by city name or postcode.
      */
     public function search(Request $request): JsonResponse
     {
@@ -92,11 +92,19 @@ class PostcodeController extends Controller
             ], 400);
         }
 
-        $results = Postcode::where('city', 'like', "%{$search}%")
-            ->orWhere('state', 'like', "%{$search}%")
-            ->orderBy('city')
-            ->limit(50)
-            ->get();
+        // Check if search is a postcode (numeric)
+        if (is_numeric($search)) {
+            $results = Postcode::where('postcode', 'like', "{$search}%")
+                ->orderBy('postcode')
+                ->limit(50)
+                ->get();
+        } else {
+            $results = Postcode::where('city', 'like', "%{$search}%")
+                ->orWhere('state', 'like', "%{$search}%")
+                ->orderBy('city')
+                ->limit(50)
+                ->get();
+        }
 
         return response()->json([
             'success' => true,
