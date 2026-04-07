@@ -12,7 +12,7 @@ class PostcodeSeeder extends Seeder
      */
     public function run(): void
     {
-        $csvPath = database_path('migrations/source/data/csv/postcodes.csv');
+        $csvPath = database_path('seeders/source/data/csv/postcodes.csv');
 
         if (!file_exists($csvPath)) {
             $this->command->error('Postcode CSV file not found at: ' . $csvPath);
